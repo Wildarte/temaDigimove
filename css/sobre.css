@@ -1,0 +1,9 @@
+.section_sobre_page{
+    margin: 40px auto;
+    padding: 20px 10px;
+}
+.section_sobre_page header h2{
+    text-align: center;
+    font-size: 2em;
+    padding: 20px;
+}

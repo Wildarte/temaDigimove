@@ -1,0 +1,87 @@
+.intro_imoveis_title{
+    align-self: center;
+    background-color: rgba(34, 34, 34, .7);
+    padding: 10px;
+    margin: auto;
+}
+.intro_imoveis_title h1{
+    font-size: var(--lg-title);
+    color: #fff;
+}
+
+/* section intro imoveis */
+.section_intro_imoveis{
+    height: 400px;
+    background-image: url('../img/intro_imoveis.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.section_intro_imoveis_content{
+    display: flex;
+    position: relative;
+    height: 100%;
+}
+.intro_imoveis_title{
+    align-self: center;
+    background-color: rgba(34, 34, 34, .7);
+    padding: 10px;
+}
+.intro_imoveis_title h1{
+    font-size: var(--lg-title);
+    color: #fff;
+}
+.section_imoveis_controllers{
+    display: flex;
+    justify-content: center;
+}
+.section_imoveis_controllers .btn_page_imoveis{
+    background-color: var(--sec-bg-color);
+    margin: 20px;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+
+/* max screen width 768px */
+@media (max-width: 768px){
+    .intro_imoveis_title{
+        margin: 20px auto!important;
+    }
+}
+
+
+/* max screen width 600px */
+@media (max-width: 600px){
+    .section_intro_imoveis{
+        min-height: 420px;
+    }
+    .intro_imoveis_title{
+        align-self: flex-start;
+        margin: 40px 0;
+    }
+}
+
+
+
+
+/* max screen width 420px */
+@media(max-width: 420px){
+    .section_intro_imoveis{
+        min-height: 520px;
+    }
+    .intro_imoveis_title{
+        margin: 40px auto;
+    }
+    .intro_imoveis_title h1{
+        font-size: 1.2em;
+    }
+}
+/* end max screen width 420px */
+
+
+
+
+

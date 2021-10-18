@@ -1,0 +1,84 @@
+.section_page_contato{
+    padding: 40px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card_page_contato{
+    flex-basis: calc(33% - 40px);
+    border: 2px solid #343434;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+}
+.card_page_contato .icon_card_contato{
+    flex-basis: calc(20% - 40px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px;
+    padding-right: 20px;
+}
+.card_page_contato .icon_card_contato{
+    border-right: 1px solid #343434;
+}
+.card_page_contato .icon_card_contato i{
+    border: 2px solid;
+    padding: 5px;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+}
+.card_page_contato .body_card_contato{
+    flex-basis: calc(80% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 10px;
+}
+.card_page_contato .body_card_contato p{
+    margin: 5px 0;
+}
+.card_page_contato .body_card_contato p{
+    color: #454545;
+}
+.card_page_contato .body_card_contato .card_contato_title{
+    font-weight: 600;
+    color: #000;
+}
+.card_page_contato .body_card_contato .card_contato_title::after{
+    content: "";
+    display: block;
+    width: 20%;
+    border: none;
+    border-bottom: 2px solid #343434;
+    margin: 5px 0;
+}
+.section_maps_contato iframe{
+    width: 100%;
+    height: 540px;
+    margin: 0;
+}
+
+/* max screen width 768px */
+@media(max-width: 768px){
+    .card_page_contato{
+        flex-basis: 50%;
+    }
+}
+/* end max screen width 768px */
+
+
+/* max screen width 420px */
+@media(max-width: 420px){
+    .card_page_contato{
+        flex-basis: 100%;
+    }
+}
+/* end max screen width 420px */

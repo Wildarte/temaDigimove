@@ -1,0 +1,51 @@
+modelo de site para imobiliaria e corretor
+
+pages: home, servicos, imóveis, contato, sobre, página para exibição dos imóveis e página para exibição dos serviços
+
+
+as páginas de cada imével devem ter
+
+vídeo do imóvel - ok
+imagens do  imóvel - ok
+título - ok
+descrição sobre o imóvel
+tipo de imóvel
+se é venda ou aluguel ou  os dois - ok
+valor do IPTU - ok
+valor do condomínio - ok
+
+possivelmente opção para adicionar iamgens em 3D
+
+características:
+ exemplos:
+    - ar condicionado
+    - armario area de serviço
+    - armário closet
+    - armário closet
+    - armário cozinha
+    - área de serviço
+    - armário banheiro
+    - armário corredor
+    - armário escritório
+
+detalhes:
+ - localização (mapa)
+ - número de quartos
+ - banheiros
+ - vagas para carro
+ - metros quadrado
+ - área total
+ - se aceita pet ou não
+
+O Empreendimento possui:
+ - Piscina
+ - Portão Eletrônico
+ - Rua Calçada
+ - Salão de Festa
+ - Poço Artesiano
+
+botões para  compartilhamento em redes sociais - ok
+
+botão para falar ou entrar em contato - ok
+
+indicação de outros imóveis na mesma cidade ou bairro

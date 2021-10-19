@@ -1,4 +1,4 @@
-<?php include('./header.php'); ?>
+<?php get_header(); ?>
 
 <main>
     <section class=" container-full section_intro_pages" style="background-image: url('./img/intro-imovel-page.jpg')">
@@ -280,5 +280,5 @@
         </div>
     </section>
 </main>
-<?php include('./inc/maps.php') ?>
-<?php include('./footer.php'); ?>
+<?php include(TEMPLATEPATH . '/inc/maps.php') ?>
+<?php get_footer(); ?>

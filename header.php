@@ -47,13 +47,14 @@
                             <i class="bi bi-x-circle"></i>
                         </div>
                     </header>
-                    <ul>
-                        <li><a href="<?= home_url(); ?>/">Home</a></li>
-                        <li><a href="<?= home_url(); ?>/imoveis.php">Imóveis</a></li>
-                        <li><a href="<?= home_url(); ?>/servicos.php">Serviços</a></li>
-                        <li><a href="<?= home_url(); ?>/sobre.php">Sobre</a></li>
-                        <li><a href="<?= home_url(); ?>/contato.php">Contato</a></li>
-                    </ul>
+                    <?php
+	                    $args = array(
+                            'menu' => 'principal',
+                            'theme_location' => 'menu-principal',
+                            'container' => false
+                        );
+                        wp_nav_menu( $args );
+                    ?>
                     <div class="rec_menu"></div>
                     <div class="header_social_mobile">
                         <a href="#"><i class="bi bi-facebook"></i></a>

@@ -190,6 +190,12 @@ header.header{
 .btn_open_menu{
     display: none;
 }
+
+
+.current_page_item a{
+    background-color: #fff;
+    color: #01AD8C!important;
+}
 /* end menu */
 
 /* end header */

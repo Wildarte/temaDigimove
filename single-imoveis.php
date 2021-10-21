@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 <main>
+    
     <section class=" container-full section_intro_pages" style="background-image: url('./img/intro-imovel-page.jpg')">
         <div class="section_intro_pages_over">
             <header class="section_intro_pages_header" style="background-color: #077DBA">
@@ -8,7 +9,7 @@
             </header>
         </div>
     </section>
-
+    <?php if(have_posts()): ?>
     <section class="container section_imovel">
         <div class="social_share_imovel">
             <div class="header_social_share_imovel">
@@ -33,57 +34,32 @@
                     <div class="container_gallery_photos">
 
                         <div class="gallery_photos_palco">
+                            <?php
+                                //this code get the images of the gallery
+                                $images_gallery = get_post_meta(get_the_ID(), 'gallery_imovel', true );
+
+                                foreach ( (array) $images_gallery as $key => $image ):
+
+                                    $img = $desc = '';
+
+                                    if ( isset( $image['imagem_imovel'] ) ) {
+                                        $img = $image['imagem_imovel'];
+                                    }
+
+                                    if ( isset( $image['legenda_foto_imovel'] ) ) {
+                                        $desc = $image['legenda_foto_imovel'];
+                                    }
+
+                            ?>
                             
                             <div class="slide_gallery_photos">
-                                <img id="imagem_gallery" class="img-t" src="img/gallery/image-imovel-1.jpg" alt="imagem do imóvel">
+                                <img id="imagem_gallery" class="img-t" src="<?= $img; ?>" alt="imagem do imóvel">
                                 <p class="gallery_legend">
-                                    Sala de estar
-                                </p>
-                                </script>
-                            </div>
-                            <div class="slide_gallery_photos">
-                                <img id="imagem_gallery" class="img-t" src="img/gallery/image-imovel-11.jpg" alt="imagem do imóvel">
-                                <p class="gallery_legend">
-                                    Cozinha
+                                    <?= $desc; ?>
                                 </p>
                             </div>
-                            <div class="slide_gallery_photos">
-                                <img id="imagem_gallery" class="img-t" src="img/gallery/image-imovel-12.jpg" alt="imagem do imóvel">
-                                <p class="gallery_legend">
-                                    Slide 3 jardim dos fundos
-                                </p>
-                            </div>
-                            <div class="slide_gallery_photos">
-                                <img id="imagem_gallery" class="img-t" src="img/gallery/image-imovel-4.jpg" alt="imagem do imóvel">
-                                <p class="gallery_legend">
-                                    Quintal da frente
-                                </p>
-                            </div>
-                            <div class="slide_gallery_photos">
-                                <img id="imagem_gallery" class="img-t" src="img/gallery/image-imovel-7.jpg" alt="imagem do imóvel">
-                                <p class="gallery_legend">
-                                    Banheiro
-                                </p>
-                            </div>
-                            <div class="slide_gallery_photos">
-                                <img id="imagem_gallery" class="img-t" src="img/gallery/image-imovel-8.jpg" alt="imagem do imóvel">
-                                <p class="gallery_legend">
-                                    Sala de estar
-                                </p>
-                            </div>
-                            <div class="slide_gallery_photos">
-                                <img id="imagem_gallery" class="img-t" src="img/gallery/image-imovel-9.jpg" alt="imagem do imóvel">
-                                <p class="gallery_legend">
-                                    Sala de estar
-                                </p>
-                            </div>
-                            <div class="slide_gallery_photos">
-                                <img id="imagem_gallery" class="img-t" src="img/gallery/image-imovel-10.jpg" alt="imagem do imóvel">
-                                <p class="gallery_legend">
-                                    Sala de estar
-                                </p>
-                            </div>
-
+                            
+                            <?php endforeach; ?>
 
                             <a class="prev_gallery" onclick="plusSlidesGallery(-1)">&#10094;</a>
                             <a class="next_gallery" onclick="plusSlidesGallery(1)">&#10095;</a>
@@ -92,30 +68,28 @@
                             <div class="btn_close_modal_photos"><i class="bi bi-x-lg"></i></div>
                         </div>
                         <div class="gallery_imovel_thumb">
+
+                            <?php
+                                //this code get the images of the gallery
+                                $images_gallery_thumb = get_post_meta(get_the_ID(), 'gallery_imovel', true );
+                                $count_img_thumb = 0;
+                                foreach ( (array) $images_gallery_thumb as $key => $image_thumb ):
+
+                                    $img_thumb = '';
+                                    $count_img_thumb++;
+
+                                    if ( isset( $image_thumb['imagem_imovel_id'] ) ) {
+                                        $img_thumb = wp_get_attachment_image_url($image_thumb['imagem_imovel_id']);
+                                    }
+
+                            ?>
+
                             <div class="photo_thumb">
-                                <img class="gallery_demo_thumb" onclick="currentSlideGallery(1)" src="img/gallery/image-imovel-1.jpg" alt="imagem do imóvel">                               
+                                <img class="gallery_demo_thumb" onclick="currentSlideGallery(<?= $count_img_thumb; ?>)" src="<?= $img_thumb; ?>" alt="imagem do imóvel">                               
                             </div>
-                            <div class="photo_thumb">
-                                <img class="gallery_demo_thumb img-t2" onclick="currentSlideGallery(2)" src="img/gallery/image-imovel-2.jpg" alt="imagem do imóvel">                                
-                            </div>
-                            <div class="photo_thumb">
-                                <img class="gallery_demo_thumb img-t3" onclick="currentSlideGallery(3)" src="img/gallery/image-imovel-3.jpg" alt="imagem do imóvel">                               
-                            </div>
-                            <div class="photo_thumb">
-                                <img class="gallery_demo_thumb img-t4" onclick="currentSlideGallery(4)" src="img/gallery/image-imovel-4.jpg" alt="imagem do imóvel">                               
-                            </div>
-                            <div class="photo_thumb">
-                                <img class="gallery_demo_thumb img-t5" onclick="currentSlideGallery(5)" src="img/gallery/image-imovel-7.jpg" alt="imagem do imóvel">                               
-                            </div>
-                            <div class="photo_thumb">
-                                <img class="gallery_demo_thumb img-t6" onclick="currentSlideGallery(6)" src="img/gallery/image-imovel-8.jpg" alt="imagem do imóvel">                               
-                            </div>
-                            <div class="photo_thumb">
-                                <img class="gallery_demo_thumb img-t7" onclick="currentSlideGallery(7)" src="img/gallery/image-imovel-9.jpg" alt="imagem do imóvel">                               
-                            </div>
-                            <div class="photo_thumb">
-                                <img class="gallery_demo_thumb img-t8" onclick="currentSlideGallery(8)" src="img/gallery/image-imovel-10.jpg" alt="imagem do imóvel">
-                            </div>
+
+                            <?php endforeach; ?>
+                            
                         </div>
 
                     </div>
@@ -158,8 +132,17 @@
                         <h3>Casa em bairro nobre</h3>
                     </header>
                     <div class="imovel_info_body">
-                        <p class="imovel_info_body_tipo"><span>Tipo de imóvel:</span> apartamento</p>
-                        <p class="imovel_info_body_venda"><span>Venda: </span> R$ 230.000</p>
+                        <?php
+                            //this code get the values from custo do imovel
+                            $tipo_imovel = 
+                            $valor_imovel = get_post_meta(get_the_ID(), 'venda_imovel', true);
+                            $aluguel_imovel = get_post_meta(get_the_ID(), 'aluga_imovel', true);
+                            $condominio_imovel;
+                            $iptu_imovel;
+                            var_dump($tipo_imovel->name);
+                        ?>
+                        <p class="imovel_info_body_tipo"><span>Tipo de imóvel:</span> <?php echo !empty($tipo_imovel) ? "sim" : "nao" ?> </p>
+                        <p class="imovel_info_body_venda"><span>Venda: </span> R$ <?= get_post_meta(get_the_ID(), 'venda_imovel', true); ?></p>
                         <p class="imovel_info_body_aluga"><span>Alugar:</span>  R$ 900/mês</p>
                         <p class="imovel_info_body_condominio"><span>Condomínio:</span> R$ 250/mês</p>
                         <p class="imovel_info_body_iptu"> <span>IPTU:</span> R$ 150/mês</p>
@@ -279,6 +262,7 @@
 
         </div>
     </section>
+    <?php endif; ?>
 </main>
 <?php include(TEMPLATEPATH . '/inc/maps.php') ?>
 <?php get_footer(); ?>

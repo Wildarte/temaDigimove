@@ -37,6 +37,7 @@
             'rewrite' => array('slug' => 'imoveis', 'with_front' => true),
             'query_var' => true,
             'supports' => array('title', 'editor', 'page-attributes','post-formats'),
+            'taxonomies' => array( 'tipo_imovel'),
     
             'labels' => array (
                 'name' => 'imoveis',
@@ -59,7 +60,8 @@
 
 
 
-    /* Método para o registro da Custom Taxonomy Tipo de imóvel para poder colocar categoria em cada im´ovel*/ 
+    /* Método para o registro da Custom Taxonomy Tipo de imóvel para poder colocar categoria em cada im´ovel
+    */
     function create_custom_tax_imovel(){
         register_taxonomy( 'categories', array('imoveis'), array(
             'hierarchical' => true, 
@@ -72,9 +74,11 @@
         register_taxonomy_for_object_type( 'categories', 'imoveis' );
     }
     add_action( 'init', 'create_custom_tax_imovel' );
-
+ 
 
 
     //requires
     require 'admin/fields/field-imovel.php';
+
+
 ?>

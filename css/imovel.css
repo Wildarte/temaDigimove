@@ -294,6 +294,9 @@ p.gallery_legend{
     margin: 15px 0;
     font-size: 1em;
 }
+.imovel_info_body_tipo a{
+    color: #000!important;
+}
 .imovel_content_principal_info .imovel_info_body span{
     font-weight: bold;
 }
@@ -325,6 +328,7 @@ p.gallery_legend{
     display: flex;
     border-radius: 50%;
     margin-right: 10px;
+    background-color: #343434;
 }
 .imovel_info_thumb img{
     width: 100%;

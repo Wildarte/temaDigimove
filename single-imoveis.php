@@ -9,7 +9,7 @@
             </header>
         </div>
     </section>
-    <?php if(have_posts()): ?>
+    <?php if(have_posts()): while(have_posts()): the_post();?>
     <section class="container section_imovel">
         <div class="social_share_imovel">
             <div class="header_social_share_imovel">
@@ -96,14 +96,14 @@
 
                     <div class="container_video_imovel" style="display: none;">
                         <video width="320" height="240" controls>
-                            <source src="./video/vertical-video.mp4" type="video/mp4">
+                            <source src="<?= get_post_meta(get_the_ID(), 'cmb_video_imovel', true) ?>" type="video/mp4">
                         </video>
                     </div>
 
 
                     <!-- ==================== panoramic image ======================== -->
-                    <link rel="stylesheet" href="css/pannellum.css">
-                    <script src="./js/pannellum.js"></script>
+                    <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/pannellum.css">
+                    <script src="<?= get_template_directory_uri(); ?>/js/pannellum.js"></script>
                     <style>
                         .pnlm-container{
                             height: 100%;
@@ -117,8 +117,8 @@
                     <script>
                         pannellum.viewer('panorama', {
                             "type": "equirectangular",
-                            "panorama": "./texturas/pan.jpg",
-                            "preview": "./texturas/pan.jpg"
+                            "panorama": "<?= get_post_meta(get_the_ID(), 'cmb_imagem_panoramica', true) ?>",
+                            "preview": "<?= get_post_meta(get_the_ID(), 'cmb_imagem_panoramica', true) ?>"
                         });
                     </script>
                     <!-- ======================== panoramic image ====================== -->
@@ -134,28 +134,30 @@
                     <div class="imovel_info_body">
                         <?php
                             //this code get the values from custo do imovel
-                            $tipo_imovel = 
+                            $get_tipo_imovel = get_the_taxonomies();
+                            $tipo_imovel = str_replace("Categorias:", "", $get_tipo_imovel["categories"]);
+
                             $valor_imovel = get_post_meta(get_the_ID(), 'venda_imovel', true);
                             $aluguel_imovel = get_post_meta(get_the_ID(), 'aluga_imovel', true);
-                            $condominio_imovel;
-                            $iptu_imovel;
-                            var_dump($tipo_imovel->name);
+                            $condominio_imovel = get_post_meta(get_the_ID(), 'condominio_imovel', true);
+                            $iptu_imovel = get_post_meta(get_the_ID(), 'iptu_imovel', true);
+                            
                         ?>
-                        <p class="imovel_info_body_tipo"><span>Tipo de imóvel:</span> <?php echo !empty($tipo_imovel) ? "sim" : "nao" ?> </p>
-                        <p class="imovel_info_body_venda"><span>Venda: </span> R$ <?= get_post_meta(get_the_ID(), 'venda_imovel', true); ?></p>
-                        <p class="imovel_info_body_aluga"><span>Alugar:</span>  R$ 900/mês</p>
-                        <p class="imovel_info_body_condominio"><span>Condomínio:</span> R$ 250/mês</p>
-                        <p class="imovel_info_body_iptu"> <span>IPTU:</span> R$ 150/mês</p>
+                        <p class="imovel_info_body_tipo"><span>Tipo de imóvel:</span> <?= $tipo_imovel; ?> </p>
+                        <p class="imovel_info_body_venda"><span>Venda: </span> R$ <?= $valor_imovel; ?></p>
+                        <p class="imovel_info_body_aluga"><span>Alugar:</span>  R$ <?= $aluguel_imovel; ?>/mês</p>
+                        <p class="imovel_info_body_condominio"> <?= $condominio_imovel != "" ? "<span>Condomínio:</span> R$ ".$condominio_imovel : ""; ?></p>
+                        <p class="imovel_info_body_iptu"> <?= $iptu_imovel != "" ? "<span>IPTU:</span> R$ ".$iptu_imovel : ""; ?></p>
 
                         <hr>
 
                         <div class="imovel_info_atendimento">
                             <div class="imovel_info_contato">
                                 <div class="imovel_info_thumb">
-                                    <img src="./img/img-corretor.jpg" alt="">
+                                    <img src="<?= get_template_directory_uri(); ?>/img/img-corretor.jpg" alt="">
                                 </div>
                                 <div class="imovel_info_name">
-                                    <h4>Andréia Correia</h4>
+                                    <h4> <?php the_author(); ?> </h4>
                                     <p>(99) 9 9999-9999</p>
                                 </div>
                             </div>
@@ -170,20 +172,34 @@
             </div>
 
             <div class="controllers_media_imovel">
+                <?php 
+                    $video_imovel = get_post_meta(get_the_ID(), 'cmb_video_imovel', true);
+                    $panoram_image = get_post_meta(get_the_ID(), 'cmb_imagem_panoramica', true)  
+                ?>
                 <button onclick="controlToggles(1)" class="btn_media_imagem controlMedia btn_media_selected">imagem</button>
-                <button onclick="controlToggles(2)" class="btn_media_video controlMedia">vídeo</button>
-                <button onclick="controlToggles(3)" class="btn_media_3d controlMedia">panorâmica</button>
+                <?= $video_imovel != "" ? '<button onclick="controlToggles(2)" class="btn_media_video controlMedia">vídeo</button>' : ''; ?>
+                <?= $panoram_image != "" ? '<button onclick="controlToggles(3)" class="btn_media_3d controlMedia">panorâmica</button>' : ''; ?> 
             </div>
 
             <div class="imovel_content_detalhes">
+                <?php
+                    $quartos_imovel = get_post_meta(get_the_ID(), 'quartos_imovel', true);
+                    $suites_imovel = get_post_meta(get_the_ID(), 'suites_imovel', true);;
+                    $banheiro_imovel = get_post_meta(get_the_ID(), 'banheiros_imovel', true);;
+                    $vagas_imovel = get_post_meta(get_the_ID(), 'vagas_imovel', true);;
+                    $m2_util = get_post_meta(get_the_ID(), 'metros2_imovel', true);;
+                    $m2_total = get_post_meta(get_the_ID(), 'metros2_total_imovel', true);;
+                    $aceite_pet = get_post_meta(get_the_ID(), 'pet_imovel', true);;
+                ?>
                 <ul class="imovel_detalhes_info">
-                    <li>Quartos: 4</li>
-                    <li>Suites: 2</li>
-                    <li>Banheiros: 4</li>
-                    <li>Vagas: 4</li>
-                    <li>m2 área útil: 155m2</li>
-                    <li>m2 área total: 350m2 área total</li>
-                    <li>aceita pet</li>
+                    <?= $quartos_imovel != "" ? '<li>Quartos: '.$quartos_imovel.'</li>' : ""; ?>
+                    <?= $suites_imovel != "" ? '<li>Suites: '.$suites_imovel.'</li>' : ""; ?>
+                    <?= $banheiro_imovel != "" ? '<li>Banheiros: '.$banheiro_imovel.'</li>' : ""; ?>
+                    <?= $vagas_imovel != "" ? '<li>Vagas: '.$vagas_imovel.'</li>' : ''; ?>
+                    <?= $m2_util != "" ? '<li>m2 área útil: '.$m2_util.'m<sup>2</sup></li>' : ""; ?>
+                    <?= $m2_total != "" ? '<li>m2 área total: '.$m2_total.'m<sup>2</sup> área total</li>' : ''; ?>
+                    <?= $aceite_pet != "" ? '<li>Aceita Pet: '.$aceite_pet.'</li>' : ''; ?>
+                    
                 </ul>
 
                 <div class="imovel_tab_desc">
@@ -193,14 +209,13 @@
                         </div>
                         <div class="body_desc_col_1">
                             <ul>
-                                <li>ar condicionado</li>
-                                <li>armário área de serviço</li>
-                                <li>armário closet</li>
-                                <li>armário de cozinha</li>
-                                <li>área de serviço</li>
-                                <li>armário banheiro</li>
-                                <li>armário corredor</li>
-                                <li>armário escritório</li>
+                                <?php
+                                    $caracts = get_post_meta(get_the_ID(), 'caracteristicas_imovel', true);
+                                    foreach($caracts as $carac):
+                                        echo "<li>". $carac['char_single_imovel'] ."</li>";
+                                    endforeach;
+                                ?>
+                                
                             </ul>
                         </div>
                     </div>
@@ -209,7 +224,8 @@
                             <h3>Descrição:</h3>
                         </div>
                         <div class="body_desc_col_2">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat totam laboriosam quam ut similique iusto ipsam. Sunt exercitationem laudantium reiciendis perspiciatis iusto nulla tempore molestiae accusantium, sed, mollitia ducimus nemo.</p>
+
+                            <p><?= get_post_meta(get_the_ID(), 'description_imovel', true); ?></p>
                         </div>
                     </div>
                 </div>
@@ -262,7 +278,7 @@
 
         </div>
     </section>
-    <?php endif; ?>
+    <?php endwhile; endif; ?>
 </main>
 <?php include(TEMPLATEPATH . '/inc/maps.php') ?>
 <?php get_footer(); ?>
